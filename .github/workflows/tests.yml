@@ -1,0 +1,12 @@
+---
+name: Tests
+
+on: push
+jobs:
+  katacoda:
+    name: Test the project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test something
+        run: |
+          echo "testing things ok"

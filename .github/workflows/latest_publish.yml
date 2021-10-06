@@ -1,0 +1,25 @@
+---
+name: Publish
+
+on: push
+
+jobs:
+  deploy:
+    name: publish project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for test to succeed
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: wait-for-test
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: Tests
+          ref: ${{ github.sha }}
+
+      - name: Do something with a passing test
+        if: steps.wait-for-test.outputs.conclusion == 'success'
+        run: echo "Successful tests, publishing"
+
+      - name: Do something with a failing test
+        if: steps.wait-for-test.outputs.conclusion == 'failure'
+        run: echo "Tests failed, aborting!"

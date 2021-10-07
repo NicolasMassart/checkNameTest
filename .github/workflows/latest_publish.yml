@@ -13,7 +13,7 @@ jobs:
         id: wait-for-test
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: Tests
+          checkName: Test the project
           ref: ${{ github.sha }}
 
       - name: Do something with a passing test
